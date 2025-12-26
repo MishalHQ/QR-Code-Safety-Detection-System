@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScanSecure - Advanced QR Safety Scanner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <div class="scanner-app">
+        <div class="scanner-header animate__animated animate__fadeInDown">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <h1>ScanSecure</h1>
+            </div>
+            <p class="tagline">Scan QR codes with advanced security verification</p>
+        </div>
+        
+        <div class="scanner-main">
+            <div class="scanner-controls animate__animated animate__fadeIn">
+                <button id="start-scanner" class="btn btn-scan">
+                    <i class="fas fa-camera"></i> Live Scan
+                </button>
+                <div class="file-upload">
+                    <label for="qr-upload" class="btn btn-upload">
+                        <i class="fas fa-upload"></i> Upload QR
+                    </label>
+                    <input type="file" id="qr-upload" accept="image/*">
+                </div>
+            </div>
+
+            <div class="scanner-view">
+                <div class="video-container" id="video-container">
+                    <video id="qr-video" playsinline></video>
+                    <canvas id="qr-canvas" hidden></canvas>
+                    <div class="scan-overlay">
+                        <div class="scan-line animate__animated animate__slideInDown"></div>
+                    </div>
+                </div>
+                
+                <div class="scan-status" id="scan-status">
+                    <div class="empty-state">
+                        <i class="fas fa-qrcode"></i>
+                        <p>Scan a QR code to begin</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="safety-modal" id="safety-modal">
+                <div class="modal-content">
+                    <div class="modal-header safe" id="modal-header">
+                        <i class="fas fa-check-circle"></i>
+                        <h3 id="modal-title">URL Verified</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modal-message">This website appears to be safe</p>
+                        <div class="url-display" id="url-display"></div>
+                        <div class="modal-actions">
+                            <button class="btn btn-cancel" id="cancel-visit">Cancel</button>
+                            <button class="btn btn-proceed" id="proceed-visit">Visit Site</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scanner-footer">
+            <div class="scan-stats">
+                <div class="stat-item">
+                    <i class="fas fa-shield-virus"></i>
+                    <span id="safe-count">0</span> Safe
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span id="unsafe-count">0</span> Unsafe
+                </div>
+            </div>
+            <p class="copyright">© 2025 ScanSecure. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
